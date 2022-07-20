@@ -42,6 +42,11 @@ export default {
       type: Array,
       required: true,
     },
+    detail: {
+       type: String,
+      required: true,
+
+    }
   },
 };
 </script>

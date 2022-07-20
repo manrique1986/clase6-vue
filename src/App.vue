@@ -5,14 +5,8 @@
     <br />
 
     <div v-if="!canAccess">
-      <button
-        class="buttonLogin"
-        data-mdb-toggle="pill"
-        @click="cambiardeRutaLogin"
-        role="tab"
-        aria-controls="pills-login"
-        aria-selected="true"
-      >
+      <button class="buttonLogin" data-mdb-toggle="pill" @click="cambiardeRutaLogin" role="tab"
+        aria-controls="pills-login" aria-selected="true">
         Login/registe
       </button>
       <LoginPage v-show="estoyEnLogin" @changeFlag="recibiElMensaje" />
@@ -22,16 +16,10 @@
     </div>
 
     <div v-else>
-      <Products
-        v-for="(product, i) in products"
-        :key="i"
-        :id="product.id"
-        :titulo="product.titulo"
-        :precio="product.precio"
-        :sabor="product.sabor"
-        :imagen="product.imagen"
-      />
+      <Products v-for="(product, i) in products" :key="i" :id="product.id" :titulo="product.titulo"
+        :precio="product.precio" :sabor="product.sabor" :imagen="product.imagen" :detail="product.detail" />
     </div>
+    <DetailPage :titulo="products.titulo" />
   </div>
 </template>
 
@@ -40,6 +28,7 @@ import Products from "./components/Products.vue";
 import BarraNav from "./components/BarraNav.vue";
 import LoginPage from "./components/LoginPage.vue";
 import Registe from "./components/Registe.vue";
+import DetailPage from "./components/DetailPage.vue";
 
 export default {
   name: "App",
@@ -48,7 +37,8 @@ export default {
     BarraNav,
     LoginPage,
     Registe,
-  },
+    DetailPage,
+},
 
   data() {
     return {
@@ -60,6 +50,9 @@ export default {
           precio: 350,
           imagen:
             "https://res.cloudinary.com/dytpump6i/image/upload/v1653932402/honey_knvkxz.jpg",
+
+          detail: "Las cervezas Honey se elaboran con miel, la que les aporta a un sabor dulce y azúcares  fermentables que elevan el contenido alcohólico de la cerveza."
+
         },
         {
           id: 2,
@@ -68,6 +61,8 @@ export default {
           precio: 400,
           imagen:
             "https://res.cloudinary.com/dytpump6i/image/upload/v1653932534/blonde2_ts180x.jpg",
+
+          detail: "Tienen un cuerpo ligero, poco amargor y aroma a lúpulo y algunos toques  dulces  (debido a la malta)."
         },
         {
           id: 3,
@@ -76,6 +71,9 @@ export default {
           precio: 400,
           imagen:
             "https://res.cloudinary.com/dytpump6i/image/upload/v1653932553/ipa_yf51hn.jpg",
+
+          detail: "En una IPA encontramos un prominente a intenso aroma a lúpulo, ya sean cítricos, florales, pináceos, resinosos, especiados, a frutas, etc."
+
         },
         {
           id: 4,
@@ -84,6 +82,9 @@ export default {
           precio: 350,
           imagen:
             "https://res.cloudinary.com/dytpump6i/image/upload/v1653932564/scottish_izjelm.jpg",
+
+          detail: " Quizás la más definida de sus características que diferencian a las cervezas de Escocia de otras oscuras es su sabor limpio, fresco."
+
         },
       ],
       canAccess: false,
@@ -117,13 +118,10 @@ export default {
 .buttonLogin {
   margin-left: 25px;
   border-radius: 10px;
-
 }
 
 .buttonLogin:hover {
-
   background-color: brown;
   color: white;
-
 }
 </style>
