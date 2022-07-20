@@ -6,18 +6,19 @@
 
     <div v-if="!canAccess">
       <button
-        class="navbar-toggler active"
+        class="buttonLogin"
         data-mdb-toggle="pill"
         @click="cambiardeRutaLogin"
         role="tab"
         aria-controls="pills-login"
         aria-selected="true"
-        >Login/registe</button
       >
+        Login/registe
+      </button>
       <LoginPage v-show="estoyEnLogin" @changeFlag="recibiElMensaje" />
     </div>
     <div v-if="!canAccess">
-      <Registe v-show="!estoyEnLogin" @changeFlag="recibiElMensaje" />
+      <Registe v-show="!estoyEnLogin" @enviarRegistro="recibirRegistro" />
     </div>
 
     <div v-else>
@@ -87,12 +88,17 @@ export default {
       ],
       canAccess: false,
       estoyEnLogin: true,
+      listadoDeUsuarios: [],
     };
   },
 
   methods: {
     recibiElMensaje() {
       this.canAccess = !this.canAccess;
+    },
+
+    recibirRegistro(payload) {
+      this.listadoDeUsuarios.push(payload);
     },
 
     cambiardeRutaLogin() {
@@ -106,5 +112,18 @@ export default {
 .titulo1 {
   text-align: center;
   color: brown;
+}
+
+.buttonLogin {
+  margin-left: 25px;
+  border-radius: 10px;
+
+}
+
+.buttonLogin:hover {
+
+  background-color: brown;
+  color: white;
+
 }
 </style>
