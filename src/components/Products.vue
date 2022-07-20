@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="product">
     <div class="productos">
       <div class="card" style="width: 18rem">
         <h5 class="card-title text-center">{{ titulo }}</h5>
@@ -7,7 +7,7 @@
         <!-- <img :src="getImgUrl()" class="card-img-top d-block w-50" :alt="titulo"> -->
         <div class="card-body">
           <p class="card-text">${{ precio }}</p>
-          <button class="btn btn-warning text-center">Agregar</button>
+          <button class="btn btn-success text-center">Agregar</button>
         </div>
       </div>
     </div>
@@ -60,5 +60,11 @@ export default {
 .img-card {
   width: 150px;
   height: 150px;
+}
+
+
+.product{
+
+  margin: 75px;
 }
 </style>

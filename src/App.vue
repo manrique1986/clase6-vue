@@ -1,27 +1,55 @@
 <template>
   <div id="app">
+    <BarraNav />
     <h3 class="titulo1">Cerveza Artesanal</h3>
     <br />
-    <Products   v-for="(product, i) in products"
-      :key="i"
-      :id="product.id"
-      :titulo="product.titulo"
-      :precio="product.precio"
-      :sabor="product.sabor"
-      :imagen="product.imagen"
+
+    <div v-if="!canAccess">
+      <button
+        class="navbar-toggler active"
+        data-mdb-toggle="pill"
+        @click="cambiardeRutaLogin"
+        role="tab"
+        aria-controls="pills-login"
+        aria-selected="true"
+        >Login/registe</button
+      >
+      <LoginPage v-show="estoyEnLogin" @changeFlag="recibiElMensaje" />
+    </div>
+    <div v-if="!canAccess">
+      <Registe v-show="!estoyEnLogin" @changeFlag="recibiElMensaje" />
+    </div>
+
+    <div v-else>
+      <Products
+        v-for="(product, i) in products"
+        :key="i"
+        :id="product.id"
+        :titulo="product.titulo"
+        :precio="product.precio"
+        :sabor="product.sabor"
+        :imagen="product.imagen"
       />
+    </div>
   </div>
 </template>
 
 <script>
-import Products from './components/Products.vue'
+import Products from "./components/Products.vue";
+import BarraNav from "./components/BarraNav.vue";
+import LoginPage from "./components/LoginPage.vue";
+import Registe from "./components/Registe.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Products
+    Products,
+    BarraNav,
+    LoginPage,
+    Registe,
   },
-    data() {
+
+  data() {
     return {
       products: [
         {
@@ -57,17 +85,26 @@ export default {
             "https://res.cloudinary.com/dytpump6i/image/upload/v1653932564/scottish_izjelm.jpg",
         },
       ],
-    productosEnCarrito: [],
+      canAccess: false,
+      estoyEnLogin: true,
     };
   },
-}
+
+  methods: {
+    recibiElMensaje() {
+      this.canAccess = !this.canAccess;
+    },
+
+    cambiardeRutaLogin() {
+      this.estoyEnLogin = !this.estoyEnLogin;
+    },
+  },
+};
 </script>
 
 <style>
-
 .titulo1 {
   text-align: center;
   color: brown;
 }
-
 </style>
