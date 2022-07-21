@@ -1,9 +1,9 @@
 <template>
      <div>
-        <hr>
+        <!-- <hr>
         <h1 class="display-2 text-center">Detalle</h1>
-        <h3>Nombre: {{nombre}}</h3>
-        <p>Descripción: {{}}</p>
+        <h3>Nombre: {{}}</h3>
+        <p>Descripción: {{}}</p> -->
         
     </div>
 </template>

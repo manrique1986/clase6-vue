@@ -7,19 +7,19 @@
     <div v-if="!canAccess">
       <button class="buttonLogin" data-mdb-toggle="pill" @click="cambiardeRutaLogin" role="tab"
         aria-controls="pills-login" aria-selected="true">
-        Login/registe
+        Login/register
       </button>
       <LoginPage v-show="estoyEnLogin" @changeFlag="recibiElMensaje" />
     </div>
     <div v-if="!canAccess">
-      <Registe v-show="!estoyEnLogin" @enviarRegistro="recibirRegistro" />
+      <RegisterPage v-show="!estoyEnLogin" @enviarRegistro="recibirRegistro" />
     </div>
 
     <div v-else>
       <Products v-for="(product, i) in products" :key="i" :id="product.id" :titulo="product.titulo"
         :precio="product.precio" :sabor="product.sabor" :imagen="product.imagen" :detail="product.detail" />
     </div>
-    <DetailPage :titulo="products.titulo" />
+    <DetailPage />
   </div>
 </template>
 
@@ -27,8 +27,8 @@
 import Products from "./components/Products.vue";
 import BarraNav from "./components/BarraNav.vue";
 import LoginPage from "./components/LoginPage.vue";
-import Registe from "./components/Registe.vue";
 import DetailPage from "./components/DetailPage.vue";
+import RegisterPage from "./components/RegisterPage.vue";
 
 export default {
   name: "App",
@@ -36,8 +36,9 @@ export default {
     Products,
     BarraNav,
     LoginPage,
-    Registe,
     DetailPage,
+    RegisterPage
+
 },
 
   data() {

@@ -26,14 +26,14 @@
         ></b-form-input>
       </b-input-group>
 
-      <b-button @click="cambiarValor" variant="primary">Login</b-button>
+      <b-button @click="cambiarValor" variant="primary">Register</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
 export default {
-  name: "RegistePage",
+  name: "RegisterPage",
   data() {
     return {
       usuario: "",
